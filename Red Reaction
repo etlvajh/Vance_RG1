@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reaction Game</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: red;
+    }
+
+    #target {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="target"></div>
+
+  <script>
+    let startTime;
+    let reactionTime;
+
+    function startGame() {
+      // Change background color to red
+      document.body.style.backgroundColor = 'red';
+
+      // Set a random delay before changing the target color
+      setTimeout(() => {
+        // Change background color to green
+        document.body.style.backgroundColor = 'green';
+
+        // Record the start time
+        startTime = new Date().getTime();
+      }, Math.random() * 5000 + 1000); // Random delay between 1 to 6 seconds
+    }
+
+    function endGame() {
+      // Record the reaction time
+      reactionTime = new Date().getTime() - startTime;
+
+      // Display the reaction time
+      alert(`Your reaction time: ${reactionTime} milliseconds`);
+
+      // Restart the game
+      startGame();
+    }
+
+    // Add click event listener to the target div
+    document.getElementById('target').addEventListener('click', endGame);
+
+    // Start the game initially
+    startGame();
+  </script>
+</body>
+</html>
